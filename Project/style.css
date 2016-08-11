@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    background: #eee;
+    height: 100%;
+}
+
+.wrapper,
+.column-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-container {
+    flex: 1 0 auto;
+}
+
+.game-field {
+    background: white;
+    width: 500px;
+    height: 500px;
+    margin: 50px auto 50px auto;
+    border: 2px solid black;
+}
+
+.control-panel {
+    height: 40px;
+    text-align: center;
+    border-bottom: double black;
+}
+
+#play-button {
+    background-color: green;
+    color: white;
+    border-color: white;
+    margin-top: 5px;
+    width: 100px;
+    height: 30px;
+}
+
+.game-panel {
+    height: 455px;
+    overflow: hidden;
+}
+
+.left-column {
+    height: 100%;
+    width: 10%;
+    float: left;
+}
+
+.center-column {
+    height: 100%;
+    width: 80%;
+    float: left;
+}
+
+.center-column-field {
+    margin: 10px;
+    position: relative;
+    border: 1px solid lightgray;
+    height: 95%;
+    box-sizing: border-box;
+}
+
+.right-column {
+    height: 100%;
+    width: 10%;
+    float: left;
+}
+
+.resource-panel {
+    text-align: center;
+}
+
+.resource-img {
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80%;
+    background-size: 100%;
+}
+
+#cheese .resource-img {
+    background-image: url(img/cheese.png);
+}
+
+#cherry .resource-img {
+    background-image: url(img/cherry.png);
+}
+
+#orange .resource-img {
+    background-image: url(img/orange.png);
+}
+
+#pumpkin .resource-img {
+    background-image: url(img/pumpkin.png);
+}
+
+.resource-panel.upper {
+    margin-top: 10px;
+    flex: 1 0 auto;
+}
+
+.resource-panel.lower {
+    margin-bottom: 10px;
+    flex: 0 0 auto;
+}
+
+footer {
+    background-color: lightgray;
+    color: #555;
+    height: 50px;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+footer a {
+    color: #111;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #111;
+    text-decoration: underline;
+}
