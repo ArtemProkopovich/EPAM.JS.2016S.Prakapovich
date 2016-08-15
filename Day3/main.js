@@ -14,7 +14,7 @@ function generateClick() {
     resetClick();
     var blockCount = random(minBlockCount, maxBlockCount);
     var field = $("#field");
-    //создаем блоки, добавляем в них числа и добавляем все в основонй контейнер
+    //создаем блоки, добавляем в них числа и добавляем все в основной контейнер
     for (var i = 0; i < blockCount; i++) {
         var number = random(0, 100)
         var block = $("<div/>").addClass("block");
@@ -32,8 +32,9 @@ function generateClick() {
 function setColorClick() {
     //находим все блоки
     var blocks = $("#field .block").each(function(index, element) {
+        var $this = $(this);
         //находим текст в блоке
-        var number = $(this).find("p").text();
+        var number = $this.find("p").text();
         var color = "#ffffff";
         if (number > 75) {
             color = "#f44336";
@@ -43,7 +44,7 @@ function setColorClick() {
             color = "#4caf50";
         }
         //добавляем background в соответсвии с числом
-        $(this).css({
+        $this.css({
             backgroundColor: color
         });
     });

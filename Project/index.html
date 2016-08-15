@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <title>Super game</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="main.js" async></script>
+    <script src="jquery-3.1.0.js" defer></script>
+    <script src="main.js" defer></script>
 </head>
 
 <body>
@@ -13,34 +14,38 @@
         <div class="main-container">
             <div class="game-field">
                 <div class="control-panel">
-                    <button type="button" id="play-button">Start</button>
+                    <div class="button start-button" id="play-button">
+                        <p>Start</p>
+                    </div>
+                    <div class="button reset-button" id="reset-button">
+                        <p>Reset</p>
+                    </div>
                 </div>
                 <div class="game-panel">
                     <div class="left-column">
                         <div class="column-wrapper">
-                            <div class="resource-panel upper" id="cheese">
-                                <div class="resource-img"></div>
+                            <div class="resource-panel upper">
+                                <div class="resource-img cheese"></div>
                                 <h5 class="score">-</h5>
                             </div>
-                            <div class="resource-panel lower" id="orange">
-                                <div class="resource-img"></div>
+                            <div class="resource-panel lower">
+                                <div class="resource-img orange"></div>
                                 <h5 class="score">-</h5>
                             </div>
                         </div>
                     </div>
                     <div class="center-column">
-                        <div class="center-column-field">
-
+                        <div class="center-column-field" id="game-field">
                         </div>
                     </div>
                     <div class="right-column">
                         <div class="column-wrapper">
-                            <div class="resource-panel upper" id="cherry">
-                                <div class="resource-img"></div>
+                            <div class="resource-panel upper">
+                                <div class="resource-img cherry"></div>
                                 <h5 class="score">-</h5>
                             </div>
-                            <div class="resource-panel lower" id="pumpkin">
-                                <div class="resource-img"></div>
+                            <div class="resource-panel lower">
+                                <div class="resource-img pumpkin"></div>
                                 <h5 class="score">-</h5>
                             </div>
                         </div>
