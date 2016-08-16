@@ -79,3 +79,15 @@ p {
     font-style: 10px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.block.red {
+    background-color: #f44336;
+}
+
+.block.green {
+    background-color: #4caf50;
+}
+
+.block.orange {
+    background-color: #ff9800;
+}
