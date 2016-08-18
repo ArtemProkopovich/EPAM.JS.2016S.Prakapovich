@@ -61,13 +61,13 @@ body {
 .zombie.michael {
     width: 46px;
     height: 69px;
-    background-image: url(../img/michael.gif);
+    background-image: url(img/michael.gif);
     background-size: cover;
 }
 
 .zombie.strong {
     width: 60px;
     height: 73px;
-    background-image: url(../img/strong.gif);
+    background-image: url(img/strong.gif);
     background-size: cover;
 }
