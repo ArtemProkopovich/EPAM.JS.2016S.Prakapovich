@@ -47,7 +47,7 @@ $(function() {
         clearInterval(resourceIntervalId);
         clearInterval(bombIntervalId);
         //убираем обработку нажатия на ресурсы, оставшиеся на поле
-        $("#game-field .resource").unbind("click", resourceClick).css({ cursor: "default" });
+        //$("#game-field .resource").unbind("click", resourceClick).css({ cursor: "default" });
         //удаляем бомбы
         $("#game-field .bomb").fadeOut(500, function() {
             $(this).remove();
