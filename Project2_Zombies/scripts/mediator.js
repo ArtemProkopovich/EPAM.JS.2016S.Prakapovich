@@ -7,7 +7,7 @@ $(function() {
     var zombies = [];
     var LINE_COUNT = 5;
     var movementInterval = 100;
-    var movementSpeed = 1;
+    var movementSpeed = 10;
     var $generateButton;
 
     function moveZombies() {
@@ -23,11 +23,21 @@ $(function() {
             if (value.position >= LINE_LENGTH - movementSpeed) {
                 value.die();
                 array.splice(index, 1);
+                gameOver();
             }
         })
     }
 
+    function gameOver() {
+        zombies.forEach(function(value) {
+            value.die();
+        })
+        zombies=[];
+        $(".game-over").fadeIn();
+    }
+
     function generateClick() {
+        $(".game-over").fadeOut();
         var zombie;
         if (random(1, 2) == 1) {
             zombie = new Michael(0, 100);
