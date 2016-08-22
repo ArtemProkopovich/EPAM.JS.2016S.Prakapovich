@@ -2,10 +2,13 @@ function Michael(position, health) {
     var self = this;
     Zombie.apply(this, arguments);
     this.$image = initDOMImage();
+    this.speed = 3;
+    this.currentSpeed = this.speed;
 
 
     function initDOMImage() {
-        self.$image.addClass("michael");
+        var skin = $("<div/>").addClass("michael");
+        self.$image.append(skin);
         return self.$image;
     }
 };

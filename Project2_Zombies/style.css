@@ -29,6 +29,10 @@ body {
     position: relative;
 }
 
+.field-line:nth-child(even) {
+    background-color: #2BDA32;
+}
+
 .buttons {
     width: 900px;
     margin: 0 auto;
@@ -48,7 +52,15 @@ body {
     background-color: #ff9800;
 }
 
-.button#btnGenerate p {
+.button#btnSlowUp {
+    background-color: lightblue;
+}
+
+.button.damage {
+    background-color: red;
+}
+
+.button p {
     margin: 0px;
 }
 
@@ -58,16 +70,35 @@ body {
     right: 0;
 }
 
-.zombie.michael {
+.progress {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40px;
+    position: relative;
+    height: 5px;
+    background-color: red
+}
+
+.progress-bar {
+    height: 100%;
+    position: absolute;
+    background-color: yellow;
+}
+
+.progress.defeat {
+    background-color: #FC4043;
+}
+
+.zombie .michael {
     width: 46px;
-    height: 69px;
+    height: 70px;
     background-image: url(img/michael.gif);
     background-size: cover;
 }
 
-.zombie.strong {
+.zombie .strong {
     width: 60px;
-    height: 73px;
+    height: 70px;
     background-image: url(img/strong.gif);
     background-size: cover;
 }
