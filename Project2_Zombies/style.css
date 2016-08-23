@@ -19,21 +19,34 @@ body {
 }
 
 #field {
+    position: relative;
+    opacity: 0.5;
     width: 900px;
     margin: 0 auto;
 }
 
+.explode-field {
+    background: url(img/explode.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 900px;
+    height: 400px;
+}
+
 .field-line {
-    height: 75px;
-    background-color: #4caf50;
+    height: 80px;
+    background: url(img/darkgrass.jpg);
     position: relative;
 }
 
 .field-line:nth-child(even) {
-    background-color: #2BDA32;
+    background: url(img/lightgrass.jpg);
 }
 
-.buttons {
+.buttons,
+.highscore {
     width: 900px;
     margin: 0 auto;
     margin-top: 5px;
@@ -46,10 +59,7 @@ body {
     margin-bottom: 5px;
     cursor: pointer;
     text-align: center;
-}
-
-.button#btnGenerate {
-    background-color: #ff9800;
+    min-width: 50px;
 }
 
 .button#btnSlowUp {
@@ -60,14 +70,83 @@ body {
     background-color: red;
 }
 
+.button.adding {
+    background-color: #ff9800;
+}
+
+.button.stop {
+    background-color: blue;
+    color: white;
+}
+
 .button p {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
     margin: 0px;
+}
+
+.highscore p {
+    font-size: 20px;
+    color: #ff9800;
+}
+
+.score {
+    color: blue;
+    font-weight: bold;
 }
 
 .zombie {
     position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.bomb {
+    position: absolute;
     top: 0;
     right: 0;
+    width: 70px;
+    height: 70px;
+}
+
+.nuclear-bomb {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url(img/nuclear_bomb.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: -200px;
+    left: 200px;
+}
+
+.bomb.explosing {
+    background-image: url(img/bomb.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 150%;
+}
+
+.bomb.safety {
+    background-image: url(img/safety_bomb.jpg);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bomb#moveable_bomb {
+    background-image: url(img/safety_bomb.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
 }
 
 .progress {
@@ -89,14 +168,39 @@ body {
     background-color: #FC4043;
 }
 
+.bomb-damage-area {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: lightgoldenrodyellow;
+    opacity: 0.3;
+    border: 1px solid yellow;
+    border-radius: 50%;
+}
+
+.blocked {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
 .zombie .michael {
+    cursor: pointer;
     width: 46px;
     height: 70px;
     background-image: url(img/michael.gif);
     background-size: cover;
 }
 
+.zombie .fatso {
+    cursor: pointer;
+    width: 50px;
+    height: 70px;
+    background-image: url(img/fatso.gif);
+    background-size: contain;
+}
+
 .zombie .strong {
+    cursor: pointer;
     width: 60px;
     height: 70px;
     background-image: url(img/strong.gif);

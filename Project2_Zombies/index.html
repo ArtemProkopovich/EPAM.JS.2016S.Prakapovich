@@ -6,14 +6,18 @@
     <title>Plants vs Zombies</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery-3.1.0.js" defer></script>
+    <script src="scripts/entity/bomb.js" defer></script>
+    <script src="scripts/entity/nuclear_bomb.js" defer></script>
     <script src="scripts/entity/zombie.js" defer></script>
     <script src="scripts/entity/zombie.michael.js" defer></script>
     <script src="scripts/entity/zombie.strong.js" defer></script>
+    <script src="scripts/entity/zombie.fatso.js" defer></script>
     <script src="scripts/mediator.js" defer></script>
 </head>
 
 <body>
     <div class="content">
+        <div class="nuclear-bomb"></div>
         <div id="field">
             <div class="field-line"></div>
             <div class="field-line"></div>
@@ -22,7 +26,13 @@
             <div class="field-line"></div>
         </div>
         <div class="buttons">
-            <div class="button" id="btnGenerate">
+            <div class="button adding" id="btnPlay">
+                <p>Play</p>
+            </div>
+            <div class="button stop" id="btnReset">
+                <p>Reset</p>
+            </div>
+            <div class="button adding" id="btnGenerate">
                 <p>Generate</p>
             </div>
             <div class="button" id="btnSlowUp">
@@ -34,9 +44,19 @@
             <div class="button damage" id="btnExplode">
                 <p>Explode</p>
             </div>
+            <div class="button damage" id="btnSetBomb">
+                <p>Set bomb</p>
+            </div>
+            <div class="button damage" id="btnNuclearBomb">
+                <p>Nuclear bomb</p>
+            </div>
+        </div>
+        <div class="highscore">
+            <p>High score: <span class="score">0</span></p>
         </div>
         <div class="game-over">
-            <p>Game over</p>
+            <p>Game over.</p>
+            <p> You score: <span class="score"></span></p>
         </div>
     </div>
 </body>

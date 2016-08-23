@@ -2,7 +2,7 @@ function Michael(position, health) {
     var self = this;
     Zombie.apply(this, arguments);
     this.$image = initDOMImage();
-    this.speed = 3;
+    this.speed = 5;
     this.currentSpeed = this.speed;
 
 

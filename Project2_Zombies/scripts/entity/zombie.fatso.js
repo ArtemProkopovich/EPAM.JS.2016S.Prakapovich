@@ -1,18 +1,19 @@
-function Strong(position) {
+function Fatso(position, health) {
     var self = this;
     Zombie.apply(this, arguments);
     this.$image = initDOMImage();
-    this.maxHealth = 70;
+    this.maxHealth = 100;
     this.health = this.maxHealth;
-    this.speed = 3;
+    this.speed = 4;
     this.currentSpeed = this.speed;
 
+
     function initDOMImage() {
-        var skin = $("<div/>").addClass("strong");
+        var skin = $("<div/>").addClass("fatso");
         self.$image.append(skin);
         return self.$image;
     }
 };
 
-Strong.prototype = Object.create(Zombie.prototype);
-Strong.prototype.constructor = Strong;
+Fatso.prototype = Object.create(Zombie.prototype);
+Fatso.prototype.constructor = Fatso;
