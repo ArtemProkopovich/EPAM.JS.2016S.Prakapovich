@@ -1,6 +1,7 @@
-function Zombie(position) {
-    this.position = position;
+function Zombie(position, line) {
     this.$image = createDOMImage();
+    this.position = position;
+    this.line = line;
     Zombie.prototype.maxHealth = 50;
     Zombie.prototype.health = this.maxHealth;
     Zombie.prototype.minSpeed = 1;

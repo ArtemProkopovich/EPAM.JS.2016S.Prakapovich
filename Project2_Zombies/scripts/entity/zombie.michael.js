@@ -1,4 +1,4 @@
-function Michael(position, health) {
+function Michael(position, line) {
     var self = this;
     Zombie.apply(this, arguments);
     this.$image = initDOMImage();

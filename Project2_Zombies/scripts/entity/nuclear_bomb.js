@@ -1,6 +1,6 @@
 function NuclearBomb() {
     this.$image = createDOMImage();
-    this.explode = function($field) {
+    this.explode = function($field, callback) {
         $field.append(this.$image);
         this.$image.animate({ top: 150, left: 400 }, 1000, function() {
             $explode = $("<div/>").addClass("explode-field").appendTo($field);
@@ -8,6 +8,7 @@ function NuclearBomb() {
                 $explode.remove();
             });
             this.remove();
+            callback();
         });
     }
 

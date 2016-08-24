@@ -41,6 +41,20 @@ body {
     position: relative;
 }
 
+.field-line-warrior-position {
+    margin-left: -80px;
+    width: 80px;
+    height: 80px;
+    background: url(img/no-grass.jpg);
+    position: relative;
+    box-sizing: border-box;
+    border-right: 2px solid navajowhite;
+}
+
+.field-line-warrior-position.coverable:hover {
+    border: 1px solid blue;
+}
+
 .field-line:nth-child(even) {
     background: url(img/lightgrass.jpg);
 }
@@ -77,6 +91,10 @@ body {
 .button.stop {
     background-color: blue;
     color: white;
+}
+
+.button.calling {
+    background-color: greenyellow;
 }
 
 .button p {
@@ -204,5 +222,23 @@ body {
     width: 60px;
     height: 70px;
     background-image: url(img/strong.gif);
+    background-size: cover;
+}
+
+.man {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+}
+
+.man .solder {
+    height: 70px;
+    background-image: url(img/man_shoot.gif);
+    background-size: cover;
+}
+
+.man .knight {
+    height: 70px;
+    background-image: url(img/knight_shoot.gif);
     background-size: cover;
 }

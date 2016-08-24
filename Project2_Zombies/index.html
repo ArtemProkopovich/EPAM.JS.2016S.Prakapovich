@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Plants vs Zombies</title>
+    <title>Zombies attack</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery-3.1.0.js" defer></script>
     <script src="scripts/entity/bomb.js" defer></script>
     <script src="scripts/entity/nuclear_bomb.js" defer></script>
+    <script src="scripts/entity/man.js" defer></script>
+    <script src="scripts/entity/man.solder.js" defer></script>
+    <script src="scripts/entity/man.knight.js" defer></script>
     <script src="scripts/entity/zombie.js" defer></script>
     <script src="scripts/entity/zombie.michael.js" defer></script>
     <script src="scripts/entity/zombie.strong.js" defer></script>
@@ -17,13 +20,22 @@
 
 <body>
     <div class="content">
-        <div class="nuclear-bomb"></div>
         <div id="field">
-            <div class="field-line"></div>
-            <div class="field-line"></div>
-            <div class="field-line"></div>
-            <div class="field-line"></div>
-            <div class="field-line"></div>
+            <div class="field-line">
+                <div class="field-line-warrior-position"></div>
+            </div>
+            <div class="field-line">
+                <div class="field-line-warrior-position"></div>
+            </div>
+            <div class="field-line">
+                <div class="field-line-warrior-position"></div>
+            </div>
+            <div class="field-line">
+                <div class="field-line-warrior-position"></div>
+            </div>
+            <div class="field-line">
+                <div class="field-line-warrior-position"></div>
+            </div>
         </div>
         <div class="buttons">
             <div class="button adding" id="btnPlay">
@@ -50,9 +62,16 @@
             <div class="button damage" id="btnNuclearBomb">
                 <p>Nuclear bomb</p>
             </div>
+            <div class="button calling" id="btnCallSolder">
+                <p>Call Solder</p>
+            </div>
+            <div class="button calling" id="btnCallKnight">
+                <p>Call Knight</p>
+            </div>
         </div>
         <div class="highscore">
-            <p>High score: <span class="score">0</span></p>
+            <p>High score: <span class="score" id="score">0</span></p>
+            <p>Killed zombies: <span class="score" id="kills">0</span></p>
         </div>
         <div class="game-over">
             <p>Game over.</p>
