@@ -169,14 +169,15 @@ $(function() {
     function updateScore() {
         $("#score").text(score);
         $("#kills").text(killedZombies);
+        $("#level").text(currentLevel + 1);
         updateLevel();
         toggleButtons();
     }
 
     //update current level and zombie generation rate
     function updateLevel() {
-        currentLevel = Math.floor(killedZombies / 10);
-        currentPlayIntervalTimeout = Math.max(startPlatIntervalTimeout - currentLevel * 50, 200);
+        currentLevel = Math.min(Math.floor(killedZombies / 10), 35);
+        currentPlayIntervalTimeout = Math.max(startPlatIntervalTimeout - currentLevel * 50, 250);
     }
 
     //turn on/off skills buttons
