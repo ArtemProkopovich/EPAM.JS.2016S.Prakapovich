@@ -1,5 +1,7 @@
 function NuclearBomb() {
     this.$image = createDOMImage();
+
+    //start explode animation then callback function for damage zombies
     this.explode = function($field, callback) {
         $field.append(this.$image);
         this.$image.animate({ top: 150, left: 400 }, 1000, function() {

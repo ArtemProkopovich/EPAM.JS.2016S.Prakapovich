@@ -2,11 +2,14 @@ function Knight() {
     var self = this;
     Man.apply(this, arguments);
     Knight.prototype.lifeTime = 20000;
+    this.leftTime = this.lifeTime;
     Knight.prototype.rate = 1500;
-    Knight.prototype.damage = 30;
-    this.radius = 70;
+    Knight.prototype.damage = 40;
+    this.radius = 90;
     this.$image = initDOMImage();
 
+    //using base fire function for find nearest zombie, 
+    //then start explode animation and damage zombies in explode area.
     Knight.prototype.fire = function(zombies) {
         var zombie = Man.prototype.fire.apply(this, arguments);
         if (zombie != undefined) {

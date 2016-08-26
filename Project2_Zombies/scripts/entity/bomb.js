@@ -7,6 +7,7 @@ function Bomb() {
         this.$image.attr("id", "moveable_bomb");
     }
 
+    //start explode animation, then callback function for damage zombies
     this.explode = function(callback) {
         this.$image.removeClass("safety").addClass("explosing");
         setTimeout(function(bomb) {
@@ -26,6 +27,7 @@ function Bomb() {
         }, 500, this);
     }
 
+    //set bomb on field
     this.setBomb = function(line, posTop, posLeft) {
         this.$image.removeAttr("id", "moveable_bomb");
         this.$image.addClass("safety");

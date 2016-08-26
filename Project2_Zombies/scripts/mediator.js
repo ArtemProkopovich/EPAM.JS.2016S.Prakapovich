@@ -1,4 +1,5 @@
 $(function() {
+    //initialize base state;
     $("#btnGenerate").click(generateClick);
     $("#btnReset").click(resetClick);
     $("#btnSlowUp").click(slowUpClick);
@@ -13,6 +14,7 @@ $(function() {
     var $btnCallSolder = $("#btnCallSolder");
     var $btnCallKnight = $("#btnCallKnight");
     var score = 0;
+    //turn off skills buttons
     toggleButtons();
 
     var $field = $("#field")
@@ -21,6 +23,7 @@ $(function() {
     var LINE_LENGTH = $("#field").width();
     var movementTimeoutId = setTimeout(moveZombies, movementInterval);
 
+    var mans = [];
     var zombies = [];
     var LINE_COUNT = 5;
     var movementInterval = 100;
@@ -31,16 +34,24 @@ $(function() {
     var startPlatIntervalTimeout = 2000;
     var currentPlayIntervalTimeout = startPlatIntervalTimeout;
 
+    //process Play button click
     function playClick() {
         toggleButtons();
+        //create callback function for creating zombies
         var callback = function playTimeoutCallback() {
-            generateClick();
+            for (var i = 0; i < 5; i++) {
+                generateClick();
+            }
             playTimeoutId = setTimeout(playTimeoutCallback, currentPlayIntervalTimeout);
         };
-        generateClick();
+        for (var i = 0; i < 5; i++) {
+            generateClick();
+        }
+        //start game
         if (playTimeoutId == 0)
             playTimeoutId = setTimeout(callback, currentPlayIntervalTimeout);
 
+        //change button to Stop state
         $field.animate({ opacity: 1 }, 200);
         $btnPlay.unbind("click", playClick);
         $btnPlay.click(stopClick);
@@ -48,29 +59,38 @@ $(function() {
         $btnPlay.find("p").text("Stop");
     }
 
+    //process Stop button click
     function stopClick() {
+        //clear creating and movement timeouts
         clearTimeout(playTimeoutId);
         clearTimeout(movementTimeoutId);
         movementTimeoutId = 0;
         playTimeoutId = 0;
 
-        $field.animate({ opacity: 0.5 }, 500);
+        //change button to Play state
+        $field.animate({ opacity: 0.5 }, 200);
         $btnPlay.unbind("click", stopClick);
         $btnPlay.click(playClick);
         $btnPlay.removeClass("stop").addClass("adding");
         $btnPlay.find("p").text("Play");
     }
 
+    //Reset states of game to initial values
     function resetClick() {
         stopClick();
         toggleButtons();
         zombies.forEach(function(value) {
             value.die();
-        })
+        });
+        mans.forEach(function(value) {
+            value.die();
+        });
+        mans = [];
         zombies = [];
         clearScore();
     }
 
+    //generate new zombie
     function generateClick() {
         $(".game-over").fadeOut();
         var zombie;
@@ -102,6 +122,7 @@ $(function() {
 
     var clickDamage = 10;
 
+    //process click on zombie(make damage)
     function zombieClick() {
         $this = $(this);
         var zombie = zombies.filter(function(zombie) {
@@ -110,6 +131,7 @@ $(function() {
         zombie.damage(clickDamage);
     }
 
+    //process zombie movement
     function moveZombies() {
         killZombies();
         zombies.forEach(function(value, index, array) {
@@ -117,7 +139,7 @@ $(function() {
         })
         movementTimeoutId = setTimeout(moveZombies, movementInterval);
     }
-
+    //kill zombies that lost all hp
     function killZombies() {
         zombies.forEach(function(zombie, index, array) {
             if (zombie.position >= LINE_LENGTH || zombie.health <= 0.01) {
@@ -125,8 +147,9 @@ $(function() {
                 array.splice(index, 1);
                 if (zombie.position >= LINE_LENGTH) {
                     gameOver();
+                } else {
+                    increaseScore(zombie);
                 }
-                increaseScore(zombie);
             }
         });
     }
@@ -142,7 +165,7 @@ $(function() {
         score += zombie.maxHealth;
         updateScore();
     }
-
+    //update score text
     function updateScore() {
         $("#score").text(score);
         $("#kills").text(killedZombies);
@@ -150,13 +173,13 @@ $(function() {
         toggleButtons();
     }
 
+    //update current level and zombie generation rate
     function updateLevel() {
-        if (killedZombies / 10 >= currentLevel) {
-            currentLevel = Math.floor(killedZombies / 10);
-            currentPlayIntervalTimeout = startPlatIntervalTimeout - currentLevel * 50;
-        }
+        currentLevel = Math.floor(killedZombies / 10);
+        currentPlayIntervalTimeout = Math.max(startPlatIntervalTimeout - currentLevel * 50, 200);
     }
 
+    //turn on/off skills buttons
     function toggleButtons() {
         $btnSetBomb.addClass("blocked");
         $btnSetBomb.unbind("click", setBombClick);
@@ -182,6 +205,7 @@ $(function() {
         }
     }
 
+    //proccess game over state
     function gameOver() {
         $over = $(".game-over");
         $over.fadeIn();
@@ -193,6 +217,7 @@ $(function() {
     var slowUpTimeout = 10000;
     var goSlowly = false;
 
+    //process SlowUp button click
     function slowUpClick() {
         if (slowUpTimeoutId != null)
             clearTimeout(slowUpTimeoutId);
@@ -200,6 +225,7 @@ $(function() {
         slowUpTimeoutId = setTimeout(speedZombies, slowUpTimeout);
     }
 
+    //slow all zombies
     function slowZombies() {
         goSlowly = true;
         zombies.forEach(function(zombie) {
@@ -207,6 +233,7 @@ $(function() {
         })
     }
 
+    //speed up all zombies
     function speedZombies() {
         goSlowly = false;
         zombies.forEach(function(zombie) {
@@ -216,15 +243,16 @@ $(function() {
 
     var growOldTimeoutId
     var growOldTimeout = 1000;
-    var growOldDamage = 1;
+    var growOldDamage = 5;
     var explodeDamage = 15;
 
+    //process GrowOld button click
     function growOldClick() {
         if (growOldTimeoutId != null)
             clearTimeout(growOldTimeoutId);
-        damageZombies(growOldDamage, 1)
+        damageZombies(growOldDamage, 0);
     }
-
+    //damage zombies
     function damageZombies(hit, iteration) {
         zombies.forEach(function(zombie) {
             zombie.damage(hit);
@@ -236,15 +264,19 @@ $(function() {
         }
     }
 
+    //process Explode button click
     function explodeClick() {
         zombies.forEach(function(zombie) {
             zombie.damage(explodeDamage);
         });
     }
 
+    //process Nuclear bomb button click
     function nuclearBombClick() {
         score -= 5000;
         updateScore();
+        //create new bomb, start exploding animation, 
+        //pass callback function that damage zombies
         var bomb = new NuclearBomb();
         bomb.explode($field, function() {
             zombies.forEach(function(zombie) {
@@ -253,11 +285,14 @@ $(function() {
         });
     }
 
+    //process Set bomb button click
     function setBombClick() {
         score -= 1000;
         updateScore();
+        //create new bomb
         var bomb = new Bomb(0, 0)
         bomb.makeMoveable();
+        //create drag-drop effect
         var $bomb = $('#moveable_bomb');
         $(document).on('mousemove', function(e) {
             $('#moveable_bomb').css({
@@ -266,6 +301,7 @@ $(function() {
             });
         });
 
+        //function for setting bomb on field
         var lineClick = function() {
             $(".field-line").unbind('click', lineClick);
             bomb.setBomb(this, 0, getLeftOffset(this, $('#moveable_bomb').css("left")));
@@ -274,12 +310,13 @@ $(function() {
         $(".field-line").click(lineClick);
     }
 
+    //start bomb exploding
     function startExplode(bomb) {
         setTimeout(function() {
             bomb.explode(explodeCallback);
         }, 1000);
     }
-
+    //callback for bomb explode that damage zombies
     function explodeCallback(bomb) {
         zombies.forEach(function(zombie) {
             if (getLength(bomb, zombie) <= 145) {
@@ -288,8 +325,6 @@ $(function() {
         })
     }
 
-
-
     function getLeftOffset(object, posX) {
         var offset = $(object).offset();
         return parseInt(posX) - offset.left - 20;
@@ -297,54 +332,65 @@ $(function() {
 
 
     var man = null;
-
+    //proccess CallSolder button click
     function callSolderClick() {
         score -= 1000;
         man = new Solder();
         callMan();
     }
 
+    //proccess CallKnight button click
     function callKnightClick() {
         score -= 2000;
         man = new Knight();
         callMan();
     }
-
-
+    //init fireplace to "can set man" state 
     function callMan() {
         $(".field-line-warrior-position").addClass("coverable").click(warriorPositionClick);
     }
 
+    //set man on fireplace
     function warriorPositionClick() {
+        //get position
         $positions = $(".field-line-warrior-position");
         $positions.removeClass("coverable").unbind("click", warriorPositionClick);
         line = $positions.index(this);
         $position = this;
         if (man != null) {
-            man.show($position, line);
+            mans.push(man);
+            var newMan = man;
+            //show new man
+            newMan.show($position, line);
+            //start man fire
             var intervalId = setInterval(function() {
-                man.fire(zombies);
-                if (man.leftTime <= 0) {
+                newMan.fire(zombies);
+                if (newMan.leftTime <= 0) {
                     clearInterval(intervalId);
-                    man.die();
+                    newMan.die();
+                    var index = mans.indexOf(newMan);
+                    mans.splice(index, 1);
                 }
-            }, man.rate);
+            }, newMan.rate);
             man == null;
         }
     }
 
 });
 
+//return absolute length between to juery objects
 function getLength(obj1, obj2) {
     var offset1 = obj1.$image.offset();
     var offset2 = obj2.$image.offset();
     return Math.sqrt(Math.pow(offset1.left - offset2.left, 2) + Math.pow(offset1.top - offset2.top, 2));
 }
 
+//return random number
 function random(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 
+//binding context to the function
 function bind(func, context) {
     return function() {
         return func.apply(context, arguments);
